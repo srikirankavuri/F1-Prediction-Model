@@ -1,22 +1,95 @@
-# F1-Prediction-Model
+# F1 Race Winner Prediction Model
 
-Teams & Drivers:
-1. Aston Martin - Lance Stroll & Fernando Alonso
-2. Alpine - Pierre Gasly & 
-3. Ferrari - Charles Leclerc & Lewis Hamilton
-4. Haas
-5. Kick Sauber
-6. McLaren - Oscar Piastri & Lando Norris
-7. Mercedes - George Russell & Kimi Antonelli
-8. Racing Bulls
-9. Red Bull Racing - Max Verstappen & Yuki Tsunoda
-10. Williams
+## Project Overview
+Machine learning model to predict Formula 1 race winners using historical race data and driver/team performance metrics.
 
-ML Algo: Random Forest
+## Current Model Architecture (9/13)
+- **Algorithm**: Random Forest Classifier
+- **Training Data**: Hungarian Grand Prix & Dutch Grand Prix (2025)
+- **Prediction Target**: Italian Grand Prix 2025 race winner
+- **Validation Approach**: Known race results for model performance evaluation
 
-Data Needed (for each Driver):
-Starting position - results.['GridPosition'],
-Finishing position - results.['Position'],
-Classified position (relevant for DNF data) - results.['ClassifiedPosition'],
-Championship points for relevant races (2) - Dutch.results.['Points'] + Hungary.results.['Points'],
-Team standing in Contructors Championship for relevant races (2) - Dutch.results.['Points'] + Hungary.results.['Points'].
+## Dataset Features
+
+### Driver Performance Metrics
+- **Starting Position**: Grid position from qualifying (`GridPosition`)
+- **Finishing Position**: Final race classification (`Position`)
+- **Classified Position**: Official race standing accounting for DNFs (`ClassifiedPosition`)
+- **Race Points**: Championship points earned per race (`Points`)
+- **DNF Status**: Did Not Finish indicator for reliability analysis
+
+### Championship Standings
+- **Driver Championship Points**: Cumulative points after each race
+- **Driver Championship Position**: Current standings rank
+- **Constructor Championship Points**: Team's total accumulated points
+- **Constructor Championship Position**: Team's current standings rank
+
+### Derived Features
+- **Position Change**: Grid position vs finishing position delta
+- **Team Performance**: Constructor championship standing as performance proxy
+
+## 2025 F1 Season - Teams & Drivers
+
+| Constructor | Driver 1 | Driver 2 |
+|-------------|----------|----------|
+| **Red Bull Racing** | Max Verstappen | Yuki Tsunoda |
+| **Ferrari** | Charles Leclerc | Lewis Hamilton |
+| **McLaren** | Lando Norris | Oscar Piastri |
+| **Mercedes** | George Russell | Kimi Antonelli |
+| **Aston Martin** | Fernando Alonso | Lance Stroll |
+| **Alpine** | Pierre Gasly | Franco Colapinto |
+| **Haas** | Oliver Bearman | Esteban Ocon  |
+| **Kick Sauber** | Nico Hulkenberg | Gabriel Bortoleto |
+| **Racing Bulls** | Isack Hadjar | Liam Lawson |
+| **Williams** | Alexander Albon | Carlos Sainz |
+
+## Implementation
+
+### Data Sources
+- **FastF1**: Official F1 telemetry and race results API
+- **Race Sessions**: Hungarian GP, Dutch GP (training); Italian GP (prediction target)
+
+### Key Dependencies
+```python
+fastf1>=3.0.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+numpy>=1.20.0
+```
+
+### Model Training Pipeline
+1. **Data Extraction**: Race results from FastF1 API
+2. **Feature Engineering**: Championship standings and performance metrics
+3. **Data Preprocessing**: Handle DNFs, missing values, categorical encoding
+4. **Model Training**: Random Forest with grid/team/championship features
+5. **Validation**: Predict known Italian GP results for accuracy assessment
+
+## Expected Outcomes
+- Race winner prediction accuracy comparison against baseline (random chance: 5%)
+- Feature importance analysis to identify key predictive factors
+- Model performance metrics on known race results for validation
+
+## Usage
+```python
+# Load and process race data
+clean_data = load_race_data(['Hungarian Grand Prix', 'Dutch Grand Prix'])
+
+# Train Random Forest model
+model = train_random_forest(clean_data)
+
+# Predict race winner
+predictions = predict_race_winner(model, italian_gp_grid_data)
+```
+
+## Future Enhancements
+- Expand training data to include full season history
+- Incorporate weather and track-specific variables
+- Implement real-time prediction capabilities for live race sessions
+
+### Key Dependencies
+```python
+fastf1>=3.0.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+numpy>=1.20.0
+```
