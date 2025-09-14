@@ -57,39 +57,7 @@ scikit-learn>=1.0.0
 numpy>=1.20.0
 ```
 
-### Model Training Pipeline
-1. **Data Extraction**: Race results from FastF1 API
-2. **Feature Engineering**: Championship standings and performance metrics
-3. **Data Preprocessing**: Handle DNFs, missing values, categorical encoding
-4. **Model Training**: Random Forest with grid/team/championship features
-5. **Validation**: Predict known Italian GP results for accuracy assessment
-
 ## Expected Outcomes
 - Race winner prediction accuracy comparison against baseline (random chance: 5%)
 - Feature importance analysis to identify key predictive factors
 - Model performance metrics on known race results for validation
-
-## Usage
-```python
-# Load and process race data
-clean_data = load_race_data(['Hungarian Grand Prix', 'Dutch Grand Prix'])
-
-# Train Random Forest model
-model = train_random_forest(clean_data)
-
-# Predict race winner
-predictions = predict_race_winner(model, italian_gp_grid_data)
-```
-
-## Future Enhancements
-- Expand training data to include full season history
-- Incorporate weather and track-specific variables
-- Implement real-time prediction capabilities for live race sessions
-
-### Key Dependencies
-```python
-fastf1>=3.0.0
-pandas>=1.3.0
-scikit-learn>=1.0.0
-numpy>=1.20.0
-```
