@@ -15,8 +15,8 @@ Teams & Drivers:
 ML Algo: Random Forest
 
 Data Needed (for each Driver):
-Starting position 'GridPosition',
-Finishing position,
-Race winner (boolean),
-Championship position,
-Team standing in Contructors Championship.
+Starting position - results.['GridPosition'],
+Finishing position - results.['Position'],
+Classified position (relevant for DNF data) - results.['ClassifiedPosition'],
+Championship points for relevant races (2) - Dutch.results.['Points'] + Hungary.results.['Points'],
+Team standing in Contructors Championship for relevant races (2) - Dutch.results.['Points'] + Hungary.results.['Points'].
