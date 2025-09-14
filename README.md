@@ -13,3 +13,10 @@ Teams & Drivers:
 10. Williams
 
 ML Algo: Random Forest
+
+Data Needed (for each Driver):
+Starting position 'GridPosition',
+Finishing position,
+Race winner (boolean),
+Championship position,
+Team standing in Contructors Championship.
