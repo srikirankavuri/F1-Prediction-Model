@@ -1,8 +1,8 @@
 # F1-Prediction-Model
 
 Teams & Drivers:
-1. Aston Martin - 
-2. Alpine - 
+1. Aston Martin - Lance Stroll & Fernando Alonso
+2. Alpine - Pierre Gasly & 
 3. Ferrari - Charles Leclerc & Lewis Hamilton
 4. Haas
 5. Kick Sauber
@@ -11,3 +11,5 @@ Teams & Drivers:
 8. Racing Bulls
 9. Red Bull Racing - Max Verstappen & Yuki Tsunoda
 10. Williams
+
+ML Algo: Random Forest
